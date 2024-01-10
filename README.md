@@ -23,7 +23,7 @@ Include screenshots of your application here. You can use the following format:
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your-username/facebook-clone.git
+    git clone https://github.com/hsuntariq/facebook_php
     ```
 
 2. **Import the database:**
