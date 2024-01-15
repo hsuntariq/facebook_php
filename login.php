@@ -10,6 +10,7 @@ $result = mysqli_query($connection, $select);
 
 if (mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
+    $_SESSION['user_id'] = $row['id'];
     $_SESSION['check_logged'] = $row['f_name'];
     header("Location: $base_url/home.php");
 } else {

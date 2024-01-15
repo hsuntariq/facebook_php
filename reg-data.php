@@ -20,6 +20,7 @@ $result = mysqli_query($connection, $insert);
 
 if ($result) {
     $_SESSION['check_logged'] = $f_name;
+    $_SESSION['user_id'] = mysqli_insert_id($connection);
     header("Location: $base_url/home.php");
 } else {
     echo "Please try again!";
