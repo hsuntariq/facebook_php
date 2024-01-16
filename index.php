@@ -63,6 +63,26 @@ if (isset($_SESSION['check_logged'])) {
 
     <?php include './boot_js.php' ?>
 
+    <script>
+        let btn = document.querySelector('.reg');
+        let form = document.querySelector('.reg-form');
+        let flash = document.querySelector('.flash');
+        let icon = document.querySelector('.bi-x-lg');
+
+        btn.addEventListener('click', (e) => {
+            e.preventDefault()
+            form.style.display = 'flex'
+        })
+        icon.addEventListener('click', () => {
+            form.style.display = 'none'
+        })
+        setTimeout(() => {
+            flash.style.transition = 'all 0.3s'
+            // flash.style.scale = '0'
+            flash.style.display = 'none'
+        }, 2000)
+    </script>
+
 </body>
 
 </html>

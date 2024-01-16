@@ -31,8 +31,9 @@
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             ?>
-            <div class="col-lg-4 col-md-5 col-sm-8 mx-auto story" style='height:90vh'>
+            <div class="col-lg-4 col-md-5 col-sm-8 mx-auto story" style='height:90vh;position-relative'>
                 <img width="100%" class="rounded-5" height="100%" src="./images/<?php echo $row['image'] ?>" alt="">
+
             </div>
 
         <?php }

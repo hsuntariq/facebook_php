@@ -22,17 +22,12 @@
     ?>
     <a href="/" class="text-primary text-decoration-none text-center w-100 d-block">Forgotten password?</a>
     <hr class='my-3'>
-    <button style="background: #42B72A;"
+    <button type="button" style="background: #42B72A;"
         class="btn reg my-4 py-2  fw-medium px-4 fs-5 text-white d-block mx-auto">Create new account</button>
 </form>
 
 <script>
-    let flash = document.querySelector('.flash');
-    setTimeout(() => {
-        flash.style.transition = 'all 0.3s'
-        // flash.style.scale = '0'
-        flash.style.display = 'none'
-    }, 2000)
+
 
 
 </script>

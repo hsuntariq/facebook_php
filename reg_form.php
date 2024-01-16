@@ -1,4 +1,4 @@
-<form action="./reg-data.php" method="POST" class='bg-white shadow p-4  col-lg-3 rounded-3'>
+<form action="./reg-data.php" method="POST" class='bg-white shadow p-4  col-xl-3 col-lg-4 rounded-3'>
     <div class="icon text-end me-3">
         <i class="bi bi-x-lg position-absolute" style='cursor:pointer'></i>
     </div>
