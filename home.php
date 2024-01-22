@@ -69,7 +69,7 @@ session_start();
     if (isset($_SESSION['story_uploaded'])) {
         ?>
 
-        <div class="pop-up d-flex justify-content-center align-items-center">
+        <div style="z-index:333" class="pop-up d-flex justify-content-center align-items-center">
             <div style="width:max-content" class="p-3 rounded-4 bg-dark text-white">
                 <h1 class='fw-light text-center'>
                     <?php echo $_SESSION['story_uploaded'] ?>
