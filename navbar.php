@@ -17,7 +17,7 @@
                 <div class="user-profile position-relative">
                     <i style="cursor:pointer" class="bi bi-person-circle"></i>
                     <div class="card p-2 border-1 rounded-0 user position-absolute">
-                        <a href="./logout.php" class='d-flex align-items-center gap-4 text-decoration-none'>
+                        <a href="./profile.php" class='d-flex align-items-center gap-4 text-decoration-none'>
                             <i class="bi text-danger fs-6 bi-box-arrow-left"></i>
                             <h5>View Profile</h5>
                         </a>
