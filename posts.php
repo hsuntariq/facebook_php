@@ -9,7 +9,7 @@
 
 <?php
 include './config.php';
-$select = "SELECT * FROM posts";
+$select = "SELECT posts.id AS post_id,user.id AS user_id,image,f_name,l_name,profile_image FROM posts JOIN user ON posts.user_id = user.id ORDER BY(posts.id) DESC";
 $result = mysqli_query($connection, $select);
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
@@ -21,12 +21,19 @@ if (mysqli_num_rows($result) > 0) {
                 <div class="d-flex justify-content-between px-4 py-2 align-items-center">
                     <div class="post-user d-flex gap-3  align-items-center">
                         <div class="u-image">
-                            <img width="50px" height="50px" class="rounded-circle"
-                                src="./post-images/<?php echo $row['image'] ?>" alt="">
+                            <?php
+                            if ($row['profile_image']) {
+                                echo "<img width='70px' height='70px' style='border-radius:50%' src='./profile_images/{$row['profile_image']}'>";
+                            } else {
+                                echo "<img width='70px' height='70px' style='border-radius:50%' src='https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png'>";
+                            }
+                            ?>
                         </div>
                         <div class="u-info">
                             <h6>
-                                Tom Russo
+                                <?php echo $row['f_name'] ?>
+                                <?php echo '' ?>
+                                <?php echo $row['l_name'] ?>
                             </h6>
                             <p class="text-secondary">
                                 5 mins
@@ -51,7 +58,7 @@ if (mysqli_num_rows($result) > 0) {
                             </h1>
                         </a>
                         <h4>
-                            <a class="text-decoration-none p-0 m-0" href="./post-comments.php?id=<?php echo $row['id'] ?>">
+                            <a class="text-decoration-none p-0 m-0" href="./post-comments.php?id=<?php echo $row['post_id'] ?>">
 
                                 <i style="cursor:pointer" class="bi bi-chat"></i>
                                 </h1>
@@ -66,14 +73,14 @@ if (mysqli_num_rows($result) > 0) {
                 </div>
                 <div class="right">
                     <?php
-                    $count = "SELECT COUNT(id) AS comments FROM comments WHERE post_id = {$row['id']}";
+                    $count = "SELECT COUNT(id) AS comments FROM comments WHERE post_id = {$row['post_id']}";
                     $result3 = mysqli_query($connection, $count);
                     if (mysqli_num_rows($result3) > 0) {
                         while ($row3 = mysqli_fetch_assoc($result3)) {
                             if ($row3['comments'] == 0) {
-                                echo "<a href='./post-comments.php?id={$row['id']}' class='text-decoration-none text-secondary' style='font-size:0.8rem'>No comments</a>";
+                                echo "<a href='./post-comments.php?id={$row['post_id']}' class='text-decoration-none text-secondary' style='font-size:0.8rem'>No comments</a>";
                             } else {
-                                echo "<a href='./post-comments.php?id={$row['id']}' class='text-decoration-none text-secondary' style='font-size:0.8rem'>{$row3['comments']} comments</a>";
+                                echo "<a href='./post-comments.php?id={$row['post_id']}' class='text-decoration-none text-secondary' style='font-size:0.8rem'>{$row3['comments']} comments</a>";
                             }
                         }
                     }

@@ -1,3 +1,8 @@
+<style>
+    .show-menu {
+        opacity: 1 !important;
+    }
+</style>
 <?php
 include './config.php';
 include './boot_css.php';
@@ -13,6 +18,7 @@ if (mysqli_num_rows($result) > 0) {
             body {
                 background: var(--bs-light);
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
             }
@@ -63,7 +69,7 @@ if (mysqli_num_rows($result) > 0) {
                         </p>
                     </div>
                     <?php
-                    $select = "SELECT comments.id AS comment_id,user.id AS user_id,f_name,l_name,comment FROM comments JOIN user ON comments.user_id = user.id WHERE comments.post_id = $id";
+                    $select = "SELECT comments.id AS comment_id,user.id AS user_id,comments.post_id AS post_id, f_name,l_name,comment FROM comments JOIN user ON comments.user_id = user.id WHERE comments.post_id = $id";
                     $result2 = mysqli_query($connection, $select);
                     if (mysqli_num_rows($result2) > 0) {
                         while ($row2 = mysqli_fetch_assoc($result2)) {
@@ -77,6 +83,18 @@ if (mysqli_num_rows($result) > 0) {
                                 <p class='text-secondary p-0 m-0 '>
                                     <?php echo $row2['comment'] ?>
                                 </p>
+                                <div class=" ms-auto me-3 position-relative " style='cursor:pointer'>
+                                    <i class="bi dots bi-three-dots-vertical"></i>
+                                    <div style="right:30%;opacity:0" class="edit-comm bg-light position-absolute  card p-3">
+                                        <ul class="list-unstyled ">
+
+
+                                            <a href="./edit_com.php?comment_id=<?php echo $row2['comment_id'] ?>&post_id=<?php echo $row2['post_id'] ?>"
+                                                class='d-flex align-items-center'><i class="bi bi-trash-fill"></i>Edit</a>
+                                            <li class='d-flex align-items-center'><i class="bi bi-trash-fill"></i>Delete</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                             <?php
                         }
@@ -98,4 +116,18 @@ if (mysqli_num_rows($result) > 0) {
         </div>
 
     <?php }
-} ?>
+
+
+}
+include './boot_js.php'
+    ?>
+<script>
+
+    let dots = document.querySelectorAll('.dots');
+    let menu = document.querySelectorAll('.edit-comm')
+    dots.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            menu[index].classList.toggle('show-menu')
+        })
+    })
+</script>

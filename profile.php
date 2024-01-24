@@ -52,7 +52,8 @@ session_start();
 
                         <div class="image text-white d-flex align-items-end">
                             <div class="img p-2 bg-white border">
-                                <img width="150px" src="./profile_images/<?php echo $row['profile_image'] ?>" alt="">
+                                <img width="150px" style="object-fit:cover"
+                                    src="./profile_images/<?php echo $row['profile_image'] ?>" alt="">
                             </div>
                             <div class="user-name align-self-center mt-5">
                                 <h1>Harry Potter</h1>
@@ -123,6 +124,34 @@ session_start();
                         </div>
                     </div>
                 </div>
+                <?php
+                $select = "SELECT posts.id AS post_id,user.id AS user_id, f_name,l_name,image,profile_image,caption FROM posts JOIN user ON posts.user_id = user.id WHERE posts.user_id = {$_SESSION['user_id']} ORDER BY(post_id) DESC";
+                $result4 = mysqli_query($connection, $select);
+                if (mysqli_num_rows($result4) > 0) {
+                    while ($row4 = mysqli_fetch_assoc($result4)) {
+                        ?>
+                        <div class="card p-3 my-2">
+                            <div class="card-header bg-light gap-3 d-flex">
+                                <div class="image">
+                                    <img width="60px" class="border shadow" height="60px" style="border-radius:50%"
+                                        src="./profile_images/<?php echo $row4['profile_image'] ?>" alt="">
+                                </div>
+                                <div class="name text-capitalize mt-1">
+                                    <h6>
+                                        <?php echo $row4['f_name'] ?>
+                                        <?php echo '' ?>
+                                        <?php echo $row4['l_name'] ?>
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="card-body shadow">
+                                <img width="100%" height="400px" style="object-fit:contain"
+                                    src="./post_images/<?php echo $row4['image'] ?>" alt="">
+                            </div>
+                        </div>
+
+                    <?php }
+                } ?>
             </div>
         </div>
     </div>

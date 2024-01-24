@@ -106,8 +106,23 @@ session_start();
             <!-- create post -->
             <div
                 class="d-flex bg-white rounded-3 col-lg-8 mx-auto my-3 justify-content-between gap-4 align-items-center py-2 px-4">
+
                 <div class="user-image">
-                    <img width="50px" height="50px" class="rounded-circle" src="" alt="">
+                    <?php
+                    $select = "SELECT profile_image FROM user WHERE id = {$_SESSION['user_id']}";
+                    $result420 = mysqli_query($connection, $select);
+                    if (mysqli_num_rows($result420) > 0) {
+                        $row420 = mysqli_fetch_assoc($result420);
+                        if ($row420['profile_image']) {
+                            ?>
+                            <img width="50px" height="50px" class="rounded-circle"
+                                src="./profile_images/<?php echo $row420['profile_image'] ?>" alt="">
+                            <?php
+                        } else {
+                            echo "<img width='70px' height='70px' style='border-radius:50%' src='https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png'>";
+                        }
+                    }
+                    ?>
                 </div>
                 <div class="add-post w-100">
                     <button type="button" style="background: #F2F3F5;" class="btn w-100" data-bs-toggle="modal"
